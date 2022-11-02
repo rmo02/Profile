@@ -26,8 +26,8 @@ export const Profile = () => {
 
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#0C0F14" }}>
-      <View style={{alignItems:'center', justifyContent:'center'}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#4F80FF" }}>
+      <View style={{alignItems:'center', justifyContent:'space-around', height:'30%', flexDirection:'row'}}>
       <View style={styles.banner}>
         <BlurView style={styles.blur}>
           <Image
@@ -36,16 +36,22 @@ export const Profile = () => {
           />
         </BlurView>
       </View>
+      <View style={{flexDirection:'column'}}>
+        <Text style={{color:'#fff', fontSize:28, fontWeight:'bold'}}>Ramon Maia</Text>
+        <Text style={{color:'#fff', fontWeight:'bold'}}>Dev Front-End</Text>
       </View>
-      <View style={{marginTop:10, marginLeft:20,  flexDirection:'column'}}>
+      <View></View>
+      </View>
+      <View style={{marginTop:15,flexDirection:'column', height:'70%', backgroundColor:'#fff', borderTopLeftRadius:38, borderTopRightRadius:38}}>
+        <View style={{marginTop:20, marginLeft:20}}>
         <Text style={styles.text1}>Sobre:</Text>
-        <View style={{marginTop:5, marginRight:10}}>
+        </View>
+        <View style={{marginTop:5, marginHorizontal:20, alignItems:'center', justifyContent:'center'}}>
         <Text style={styles.text2}>Bacharel em direito e atualmente graduando em Sistemas de Informação pela Universidade de Ensino Dom Bosco.
           Atualmente trabalho como desenvolvedor Front-End e Sistema TOTVS na empresa TV Mirante com foco principal para dispositivos mobiles e web.
         </Text>
         </View>
-      </View>
-      <View style={{marginTop:30, marginLeft:20,}}>
+      <View style={{marginTop:40, marginLeft:20,}}>
         <Text style={styles.text1}>Contatos:</Text>
       </View>
       <View style={{flexDirection:'row', marginTop:10, justifyContent:'space-around' }}>
@@ -53,7 +59,8 @@ export const Profile = () => {
       <FontAwesome name="linkedin-square" size={45} color="#0A66C2" onPress={()=>openUrl(link)} />
       <Ionicons name="md-logo-whatsapp" size={45} color="green" onPress={()=>Linking.openURL('https://api.whatsapp.com/send?phone=5598984324158&text=Ol%C3%A1%2C%20Tudo%20bem%3F')}/>
       <Entypo name="twitter" size={45} color="#1D9BF0" onPress={()=>Linking.openURL('https://twitter.com/_ramoonmaia')}/>
-      <AntDesign name="github" size={45} color="white"  onPress={()=>Linking.openURL('https://github.com/rmo02')}/>
+      <AntDesign name="github" size={45} color="black"  onPress={()=>Linking.openURL('https://github.com/rmo02')}/>
+      </View>
       </View>
     </SafeAreaView>
   );
@@ -61,24 +68,28 @@ export const Profile = () => {
 
 export const styles = StyleSheet.create({
   banner: {
-    height: 150,
-    width: 150,
+    height: 120,
+    width: 120,
     overflow: "hidden",
     borderRadius: 80,
     marginTop:30
   },
-  blur: { height: "100%", padding:2 },
-  avatar:{height: "100%",
+  blur:{ 
+  height: "100%",
+  padding:2 },
+  avatar:{
+  height: "100%",
   width: "100%",
-  borderRadius: 10,},
+  borderRadius: 10
+},
   text1:{
     fontSize:20,
     fontWeight:'bold',
-    color:'#fff'
+    color:'black'
   },
   text2:{
     textAlign:'justify',
-    color:"#fff",
+    color:"black",
     fontWeight:'400',
     fontSize:16
   }

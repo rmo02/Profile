@@ -18,13 +18,13 @@ import { Ionicons } from '@expo/vector-icons';
       outputRange: ['0%','100%']
   })
 
-  const [progress3, setProgress3] = useState(new Animated.Value(50));
+  const [progress3, setProgress3] = useState(new Animated.Value(60));
   const progressAnim3 = progress3.interpolate({
       inputRange: [0, 100],
       outputRange: ['0%','100%']
   })
 
-  const [progress4, setProgress4] = useState(new Animated.Value(20));
+  const [progress4, setProgress4] = useState(new Animated.Value(30));
   const progressAnim4 = progress4.interpolate({
       inputRange: [0, 100],
       outputRange: ['0%','100%']
@@ -36,13 +36,20 @@ import { Ionicons } from '@expo/vector-icons';
       outputRange: ['0%','100%']
   })
 
+  const [progress6, setProgress6] = useState(new Animated.Value(90));
+  const progressAnim6 = progress6.interpolate({
+      inputRange: [0, 100],
+      outputRange: ['0%','100%']
+  })
+
+
   return (
     <View style={styles.container}>
       <View style={styles.intro}>
           <Text style={styles.text}>Skills</Text>
       </View>
 
-      <ScrollView>
+      <ScrollView style={{marginTop:10}}>
         <View style={styles.cards}>
         <View style={styles.card}>
           <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', marginTop:30}}>
@@ -112,7 +119,7 @@ import { Ionicons } from '@expo/vector-icons';
                 },{
                     width: progressAnim3
                 }]}>
-                <Text style={{color:"#fff"}}>50%</Text>
+                <Text style={{color:"#fff"}}>60%</Text>
             </Animated.View>
             </View>
           </View>
@@ -136,7 +143,7 @@ import { Ionicons } from '@expo/vector-icons';
                 },{
                     width: progressAnim4
                 }]}>
-                <Text style={{color:"#fff"}}>20%</Text>
+                <Text style={{color:"#fff"}}>30%</Text>
             </Animated.View>
             </View>
           </View>
@@ -169,6 +176,34 @@ import { Ionicons } from '@expo/vector-icons';
         </View>
 
 
+        <View style={styles.card}>
+          <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', marginTop:30}}>
+          <Image 
+            style={{height:90, width:60}} 
+            resizeMode="contain" 
+            source={require("../../assets/git-bash.png")} 
+            />
+          <View style={{flexDirection: 'column', justifyContent:'space-around', width:'70%'}}>
+          <Text style={{fontSize:20, fontWeight:'bold', color:'#F05033'}}>Git Bash</Text>
+          <View>
+          <View style={{width: '100%',
+            height: 20,
+            borderRadius: 30, marginTop:20, backgroundColor: '#F05033' + 30}}>
+            <Animated.View style={[{
+                height: 20,
+                borderRadius: 20,
+                backgroundColor:'#F05033', alignItems:'center'
+                },{
+                    width: progressAnim6
+                }]}>
+                <Text style={{color:"#fff"}}>90%</Text>
+            </Animated.View>
+            </View>
+          </View>
+          </View>
+          </View>
+        </View>
+
         </View>
       </ScrollView>
     </View>
@@ -178,11 +213,11 @@ import { Ionicons } from '@expo/vector-icons';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0C0F14",
+    backgroundColor: "#4F80FF",
   },
   intro: {
-    marginTop: 30,
-    marginLeft: 10,
+    marginTop: 35,
+    marginLeft: 20,
     width: "80%",
   },
   text: {
@@ -191,6 +226,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   cards:{
+    elevation:10,
     marginTop:10,
     alignItems:'center'
   },
