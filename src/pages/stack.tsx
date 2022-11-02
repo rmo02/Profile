@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
  export const StackPage = () => {
 
-  const [progress, setProgress] = useState(new Animated.Value(50));
+  const [progress, setProgress] = useState(new Animated.Value(40));
   const progressAnim = progress.interpolate({
       inputRange: [0, 100],
       outputRange: ['0%','100%']
