@@ -1,153 +1,143 @@
+import { View, Text, StyleSheet, Image, Linking, Alert, TouchableOpacity } from "react-native";
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
-import { FontAwesome5 } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { BlurView } from "expo-blur";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import { MaterialCommunityIcons as Icon2 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { propsStack } from "../routes/Models";
+
+const link = 'https://www.linkedin.com/in/ramon-maia-901a561b4/';
 
 export const Home = () => {
+  const navigation = useNavigation<propsStack>();
+
+  const openUrl = async (link: string) => {
+    const isSupported = await Linking.canOpenURL(link);
+    if(isSupported){
+      await Linking.openURL(link);
+    } else {
+      Alert.alert('Não é possivel abrir o link')
+    }
+  }
+
 
   return (
-    <View style={styles.container}>
-       <View style={styles.intro}>
-          <Text style={styles.text}>Meu portifólio</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#051428",}}>
+      <View style={{alignItems:'center', justifyContent:'space-around', flexDirection:'column'}}>
+      <View style={styles.banner}>
+        <BlurView style={styles.blur}>
+          <Image
+            style={styles.avatar}
+            source={require("../../assets/avatar.jpg")}
+          />
+        </BlurView>
+      </View>
+      <View style={{flexDirection:'column', alignItems:'center', marginTop:30}}>
+        <View style={{flexDirection:'row'}}>
+        <Text style={{color:'#fff', fontSize:24, fontWeight:'bold'}}>@Ramon Maia</Text>
+        <MaterialIcons name="verified" size={24} color="#2576F5" />
         </View>
-        <View style={{height:'80%', backgroundColor:'#fff', borderTopLeftRadius:38, borderTopRightRadius:38, marginBottom:10}}>
-        <ScrollView style={{marginBottom:10}}>
-          
-          <View style={{marginTop:20, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <FontAwesome5 name="react" size={50} color="#2AB3FF" />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>Cafeteria</Text>
-            <Text style={styles.descricao}>Projeto feito em React Native; um sistema de venda de cafés(Front-End)</Text>
-          </View>
-          </View>
+        <Text style={{color:'#fff', fontWeight:'bold'}}>Dev Front-End</Text>
+      </View>
+      </View>
 
-          <View style={{marginTop:30, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <FontAwesome5 name="react" size={50} color="#2AB3FF" />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>+Educação</Text>
-            <Text style={styles.descricao}>Projeto feito em React Native; um app para auxiliar estudantes nos estudos</Text>
-          </View>
-          </View>
+      {/* //Contatos */}
 
-          <View style={{marginTop:30, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <Image 
-            style={{height:50, width:60}} 
-            resizeMode="contain" 
-            source={require("../../assets/flutter-logo.png")} 
-            />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>+Educação</Text>
-            <Text style={styles.descricao}>App para auxiliar estudantes nos estudos</Text>
-          </View>
-          </View>
-
-
-          <View style={{marginTop:30, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <Image 
-            style={{height:50, width:60}} 
-            resizeMode="contain" 
-            source={require("../../assets/flutter-logo.png")} 
-            />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>Scoreboard</Text>
-            <Text style={styles.descricao}>Contador com reset, retirar/aumentar pontuação em partidas</Text>
-          </View>
-          </View>
-
-          <View style={{marginTop:30, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <Image 
-            style={{height:50, width:60}} 
-            resizeMode="contain" 
-            source={require("../../assets/flutter-logo.png")} 
-            />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>PayFlow</Text>
-            <Text style={styles.descricao}>Sistema de gerenciamento e organização de boletos(NLW) </Text>
-          </View>
-          </View>
-
-          <View style={{marginTop:30, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <FontAwesome5 name="react" size={50} color="#2AB3FF" />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>Quiz</Text>
-            <Text style={styles.descricao}>Projeto feito em React Native; sistema de quiz simples com progresso, pontuação e mostrando os erros e acertos</Text>
-          </View>
-          </View>
-
-          <View style={{marginTop:30, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <FontAwesome5 name="react" size={50} color="#2AB3FF" />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>Login com Autenticação</Text>
-            <Text style={styles.descricao}>Tela simples de login e logout em React Js com autenticação com o google</Text>
-          </View>
-          </View>
-
-          <View style={{marginTop:30, alignItems:'center', flexDirection:'row', justifyContent:'space-around', marginHorizontal:20}}>
-          <Fontisto name="angularjs" size={50} color="#D2002C" />
-          <View style={{flexDirection:'column', marginLeft:30, justifyContent:'space-around', width:'90%'}}>
-            <Text style={styles.nomeProjeto}>Moments</Text>
-            <Text style={styles.descricao}>Rede Social de compatilhamento de fotos feito em Angular com TypeScript</Text>
-          </View>
-          </View>
-
-        </ScrollView>
-        </View>
+      <View style={{flexDirection:'row', justifyContent:'space-around', marginTop:20, paddingHorizontal:20, alignItems:'center',}}>
       
-    </View>
+      <View style={{flexDirection:'column', alignItems:'center'}}>
+      <MaterialCommunityIcons name="message-text-outline" size={30} color="gray" />
+      <Text style={styles.text2}>Mensagem</Text>
+      </View>
+
+      <View style={{flexDirection:'column',alignItems:'center'}}>
+      <Feather name="phone-call" size={30} color="gray" />
+      <Text style={styles.text2}>Telefone</Text>
+      </View>
+
+      <View style={{flexDirection:'column',alignItems:'center'}}>
+      <Icon2 name="gmail" size={30} color="gray" />
+      <Text style={styles.text2}>Gmail</Text>
+      </View>
+
+      </View>
+
+      {/* //Projetos e estudos */}
+
+      <View style={{flexDirection:'row', justifyContent: "space-between", paddingHorizontal: 20}}>
+      <TouchableOpacity
+        style={styles.button}
+        >
+        <Text style={styles.textButtom}>Contatos</Text>
+      </TouchableOpacity>
+
+
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Projetos")}
+        >
+        <Text style={styles.textButtom}>Projetos</Text>
+      </TouchableOpacity>
+
+      </View>
+
+
+      {/* //Sobre */}
+      <View style={{marginTop:15,flexDirection:'column'}}>
+        <View style={{marginTop:20, marginLeft:20}}>
+        <Text style={styles.text1}>Sobre:</Text>
+        </View>
+        <View style={{marginTop:5, marginHorizontal:20, alignItems:'center', justifyContent:'center'}}>
+        <Text style={styles.text2}>Bacharel em direito e atualmente graduando em Sistemas de Informação pela Universidade de Ensino Dom Bosco.
+          Atualmente trabalho como desenvolvedor Front-End e Sistema TOTVS na empresa TV Mirante com foco principal para dispositivos mobiles e web.
+        </Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#4F80FF",
+  banner: {
+    height: 120,
+    width: 120,
+    overflow: "hidden",
+    borderRadius: 80,
+    marginTop:40
   },
-  intro: {
-    marginTop: 50,
-    marginLeft: 20,
-    width: "100%",
-    height:'15%'
-  },
-  text: {
-    fontSize: 28,
-    color: "#fff",
-    fontWeight: "bold",
-  },
+  blur:{ 
+  height: "100%",
+  padding:2 },
+  avatar:{
+  height: "100%",
+  width: "100%",
+  borderRadius: 10
+},
   text1:{
+    fontSize:20,
+    fontWeight:'bold',
+    color:'#737B80'
+  },
+  text2:{
     textAlign:'justify',
-    marginLeft:10,
-    marginTop:10,
-    marginRight:10,
-    fontSize: 18,
-    color: "black",
-    fontWeight: "400",
+    color:"#737B80",
+    fontWeight:'400',
+    fontSize:16
   },
-  cards:{
-    elevation:10,
-    marginTop:10,
-    alignItems:'center'
-  },
- card: {
-  flexWrap:'wrap',
-  width:"90%",
-  paddingHorizontal: 10,
-  height: 130,
-  backgroundColor: "white",
-  marginBottom: 15,
-  borderRadius: 10,
-  elevation:5
+  button: {
+    width:'50%',
+    marginTop: 30,
+    paddingVertical: 10,
+    borderRadius: 28,
+    elevation: 5,
+    backgroundColor: "#14170B" + 20,
+    },
+textButtom:{
+    textAlign:'center',
+    color:'#737B80',
 },
-nomeProjeto:{
-  fontSize:18,
-  color: '#4F80FF',
-  fontWeight:'bold'
-},
-descricao:{
-  color:'#3C40E8',
-  fontSize:14,
-  fontWeight:'400',
-  textAlign:'justify'
-}
-
-
 });

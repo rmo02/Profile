@@ -213,7 +213,7 @@ import { Ionicons } from '@expo/vector-icons';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4F80FF",
+    backgroundColor: "#051428",
   },
   intro: {
     marginTop: 35,
@@ -235,7 +235,7 @@ export const styles = StyleSheet.create({
   width:"90%",
   paddingHorizontal: 10,
   height: 130,
-  backgroundColor: "white",
+  backgroundColor: "#071124",
   marginBottom: 15,
   borderRadius: 10,
   elevation:5
