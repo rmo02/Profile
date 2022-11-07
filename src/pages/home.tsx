@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, Linking, Alert, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -8,11 +8,17 @@ import { MaterialCommunityIcons as Icon2 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from "../routes/Models";
+import BottomSheet from "../components/BottomSheet";
+
 
 const link = 'https://www.linkedin.com/in/ramon-maia-901a561b4/';
 
 export const Home = () => {
   const navigation = useNavigation<propsStack>();
+
+  const [ bottom, setBottom ] = useState(false);
+
+
 
   const openUrl = async (link: string) => {
     const isSupported = await Linking.canOpenURL(link);
@@ -22,6 +28,9 @@ export const Home = () => {
       Alert.alert('Não é possivel abrir o link')
     }
   }
+
+  let number = '98984324158';
+  let email ='ramoon.maia23@gmail.com';
 
 
   return (
@@ -54,21 +63,22 @@ export const Home = () => {
       </View>
 
       <View style={{flexDirection:'column',alignItems:'center'}}>
-      <Feather name="phone-call" size={30} color="gray" />
+      <Feather name="phone-call" size={30} color="gray" onPress={()=> Linking.openURL(`tel: ${number}`)} />
       <Text style={styles.text2}>Telefone</Text>
       </View>
 
       <View style={{flexDirection:'column',alignItems:'center'}}>
-      <Icon2 name="gmail" size={30} color="gray" />
+      <Icon2 name="gmail" size={30} color="gray" onPress={()=> Linking.openURL(`mailto: ${email}`)}/>
       <Text style={styles.text2}>Gmail</Text>
       </View>
 
       </View>
 
-      {/* //Projetos e estudos */}
+      {/* //Contatos e estudos */}
 
       <View style={{flexDirection:'row', justifyContent: "space-between", paddingHorizontal: 20}}>
       <TouchableOpacity
+        onPress={()=> bottom === true ? setBottom(false) : setBottom(true)}
         style={styles.button}
         >
         <Text style={styles.textButtom}>Contatos</Text>
@@ -97,6 +107,7 @@ export const Home = () => {
         </Text>
         </View>
       </View>
+      {bottom === true ? <BottomSheet/> : null}
     </SafeAreaView>
   );
 };
@@ -110,12 +121,12 @@ export const styles = StyleSheet.create({
     marginTop:40
   },
   blur:{ 
-  height: "100%",
-  padding:2 },
-  avatar:{
-  height: "100%",
-  width: "100%",
-  borderRadius: 10
+    height: "100%",
+    padding:2 },
+    avatar:{
+    height: "100%",
+    width: "100%",
+    borderRadius: 10
 },
   text1:{
     fontSize:20,

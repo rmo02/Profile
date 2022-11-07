@@ -147,7 +147,7 @@ export const Projeto = () => {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#051428",
+    backgroundColor:'#051428'
   },
   intro: {
     marginTop: 60,
@@ -165,16 +165,17 @@ export const styles = StyleSheet.create({
     elevation:10,
     marginTop:20,
     alignItems:'center',
-    backgroundColor:'#2077FF' + 30,
+    backgroundColor:'#0A2650',
     borderRadius:20,
-    marginHorizontal:10
+    marginHorizontal:10,
+    paddingBottom:20
   },
  card: {
   flexWrap:'wrap',
   width:"90%",
   paddingHorizontal: 10,
   height: 100,
-  backgroundColor: "#071124",
+  backgroundColor: "#0A2650",
   marginBottom: 15,
   borderRadius: 10,
   elevation:5

@@ -3,12 +3,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Contatos } from "../pages/Contatos";
 import { Projeto } from "../pages/Projetos";
-import { Home } from "../pages/Home";
 import { StackPage } from "../pages/stack";
 import { Text, Platform, StyleSheet } from "react-native";
 import { Octicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { propsNavigationStack } from "./Models";
+import { Home } from "../pages/home";
+import BottomSheet from "../components/BottomSheet";
 
 const Stack= createNativeStackNavigator<propsNavigationStack>();
 const Tab = createBottomTabNavigator<propsNavigationStack>();
@@ -35,6 +36,7 @@ export function StackRoutes() {
           component={Projeto}
           options={{ headerTransparent: true, headerShown: false, title: "" }}
         />
+
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -61,8 +63,11 @@ export function ShowBottomBar() {
     <Tab.Navigator
       screenOptions={{
         unmountOnBlur: true,
-        tabBarStyle: { height: Platform.OS === "ios" ? 100 : 60 },
+        tabBarStyle: { height: Platform.OS === "ios" ? 100 : 60,
+        backgroundColor:'white' },
         tabBarShowLabel: false,
+        
+
       }}
     >
       <Tab.Screen
@@ -75,7 +80,7 @@ export function ShowBottomBar() {
               <AntDesign
                 name="home"
                 size={24}
-                color={focused ? "#92A7FD" : "#2F598431"}
+                color={focused ? "black" : "#2F598431"}
               />
               <Text style={styles.text}>Home</Text>
             </>
@@ -115,6 +120,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   text: {
+    color:'#090436',
     fontSize: 16,
     fontWeight: "400",
     textAlign: "center",
