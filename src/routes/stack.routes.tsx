@@ -9,7 +9,7 @@ import { Octicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { propsNavigationStack } from "./Models";
 import { Home } from "../pages/home";
-import BottomSheet from "../components/BottomSheet";
+import { Splash } from "../pages/Splash";
 
 const Stack= createNativeStackNavigator<propsNavigationStack>();
 const Tab = createBottomTabNavigator<propsNavigationStack>();
@@ -21,9 +21,14 @@ export function StackRoutes() {
     >
       <Stack.Group>
       <Stack.Screen
-            name="HomePage"
+          name="Splash"
+          component={Splash}
+          options={{ headerTransparent: true, headerShown: false, title: "" }}
+        />
+      <Stack.Screen
+            name="Home"
             component={ShowBottomBar}
-            options={{ headerTransparent: true, headerShown: false, title: "" }}
+            options={{gestureEnabled:false, headerTransparent: true, headerShown: false, title: "" }}
           />
         <Stack.Screen
           name="Contatos"
@@ -45,7 +50,7 @@ export function StackRoutes() {
 export function HomeNavigation() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="HomePage" component={Home} options={{ headerTransparent: true, headerShown: false, title: "" }} />
+      <Stack.Screen name="Home" component={Home} options={{ headerTransparent: true, headerShown: false, title: "" }} />
     </Stack.Navigator>
   );
 }
@@ -53,7 +58,7 @@ export function HomeNavigation() {
 export function StacksNavigation() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="StackPage" component={StackPage} options={{ headerTransparent: true, headerShown: false, title: "" }}/>
+      <Stack.Screen name="Stack" component={StackPage} options={{ headerTransparent: true, headerShown: false, title: "" }}/>
     </Stack.Navigator>
   );
 }
@@ -66,8 +71,6 @@ export function ShowBottomBar() {
         tabBarStyle: { height: Platform.OS === "ios" ? 100 : 60,
         backgroundColor:'white' },
         tabBarShowLabel: false,
-        
-
       }}
     >
       <Tab.Screen

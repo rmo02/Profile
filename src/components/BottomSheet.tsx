@@ -1,16 +1,34 @@
 
 import React, { useRef } from 'react'
-import { View, StyleSheet, Platform, Animated, PanResponder, } from 'react-native'
-import { spring } from 'react-native-reanimated';
+import { View, StyleSheet, Platform, Animated, PanResponder, Text, Linking, Alert } from 'react-native'
 import { WINDOW_HEIGHT } from '../utils/Tela'
+import { Feather } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 0.5;
 const BOTTOM_SHEET_MIN_HEIGHT =   WINDOW_HEIGHT * 0.1;
 const MAX_UPWARD_TRANSLATE_Y = BOTTOM_SHEET_MIN_HEIGHT - BOTTOM_SHEET_MAX_HEIGHT;
 const MAX_DOWNWARD_TRANSLATE_Y = 0;
 const DRAG_THRESHOLD = 50;
+const link = 'https://www.linkedin.com/in/ramon-maia-901a561b4/';
+
 
 const BottomSheet = () => {
+
+  const openUrl = async (link: string) => {
+    const isSupported = await Linking.canOpenURL(link);
+    if(isSupported){
+      await Linking.openURL(link);
+    } else {
+      Alert.alert('Não é possivel abrir o link')
+    }
+  }
+
+
+
+
   const animatedValue = useRef(new Animated.Value(0)).current;
   const lastGestureDy = useRef(0);
   const panResponder = useRef(
@@ -71,7 +89,19 @@ const BottomSheet = () => {
     <>
       <Animated.View style={[styles.bottomSheet, bottomSheetAnimation]}>
         <View style={styles.draggableArea} {...panResponder.panHandlers}>
-          <View style={styles.dragHandle}/>
+          <View style={styles.dragHandle}></View>
+
+        </View>
+        <View style={styles.viewText}>
+          <Text style={styles.text}>Redes Sociais</Text>
+        </View>
+        <View>
+          <View style={{flexDirection:'row', justifyContent:'space-around' }}>
+          <Feather name="instagram" size={45} color="#D12F6B" onPress={()=>Linking.openURL('https://www.instagram.com/_ramoonmaia/')}/>
+          <FontAwesome name="linkedin-square" size={45} color="#0A66C2" onPress={()=>openUrl(link)} />
+          <Entypo name="twitter" size={45} color="#1D9BF0" onPress={()=>Linking.openURL('https://twitter.com/_ramoonmaia')}/>
+          <AntDesign name="github" size={45} color="black"  onPress={()=>Linking.openURL('https://github.com/rmo02')}/>
+        </View>
         </View>
       </Animated.View>
     </>
@@ -82,7 +112,7 @@ const styles = StyleSheet.create({
   bottomSheet:{
     position:'absolute',
     width:'100%',
-    height:BOTTOM_SHEET_MAX_HEIGHT,
+    height:'50%',
     bottom:BOTTOM_SHEET_MIN_HEIGHT - BOTTOM_SHEET_MAX_HEIGHT,
     ...Platform.select({
       android:{elevation:3},
@@ -102,16 +132,26 @@ const styles = StyleSheet.create({
   },
   draggableArea:{
     alignItems:'center',
-    justifyContent:'center',
+    justifyContent:'flex-start',
     width:132,
-    height:32,
-    alignSelf:'center',  
+    height:45,
+    alignSelf:'center', 
+    marginTop:5
   },
   dragHandle:{
     width:100,
     height:6,
     backgroundColor:'#d3d3d3',
     borderRadius:10
+  },
+  viewText:{
+    marginHorizontal:20,
+    marginBottom:20
+  },
+  text:{
+    color:'gray',
+    fontSize: 20,
+
   }
 })
 

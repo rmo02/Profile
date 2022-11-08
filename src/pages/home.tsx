@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Image, Linking, Alert, TouchableOpacity } from "react-native";
-import React, { useRef, useState } from "react";
+import { View, Text, StyleSheet, Image, Linking,  TouchableOpacity, BackHandler } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -9,29 +9,24 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from "../routes/Models";
 import BottomSheet from "../components/BottomSheet";
+import { Ionicons } from '@expo/vector-icons';
 
 
-const link = 'https://www.linkedin.com/in/ramon-maia-901a561b4/';
 
 export const Home = () => {
   const navigation = useNavigation<propsStack>();
 
   const [ bottom, setBottom ] = useState(false);
 
-
-
-  const openUrl = async (link: string) => {
-    const isSupported = await Linking.canOpenURL(link);
-    if(isSupported){
-      await Linking.openURL(link);
-    } else {
-      Alert.alert('Não é possivel abrir o link')
-    }
-  }
-
   let number = '98984324158';
   let email ='ramoon.maia23@gmail.com';
 
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () =>{
+      return true
+    })
+  }, [])
+  
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#051428",}}>
@@ -58,7 +53,7 @@ export const Home = () => {
       <View style={{flexDirection:'row', justifyContent:'space-around', marginTop:20, paddingHorizontal:20, alignItems:'center',}}>
       
       <View style={{flexDirection:'column', alignItems:'center'}}>
-      <MaterialCommunityIcons name="message-text-outline" size={30} color="gray" />
+      <Ionicons name="md-logo-whatsapp" size={30} color="gray" onPress={()=>Linking.openURL('https://api.whatsapp.com/send?phone=5598984324158&text=Ol%C3%A1%2C%20Tudo%20bem%3F')}/>
       <Text style={styles.text2}>Mensagem</Text>
       </View>
 
@@ -98,11 +93,11 @@ export const Home = () => {
 
       {/* //Sobre */}
       <View style={{marginTop:15,flexDirection:'column'}}>
-        <View style={{marginTop:20, marginLeft:20}}>
-        <Text style={styles.text1}>Sobre:</Text>
+        <View style={{marginTop:30, marginLeft:20}}>
+        <Text style={styles.text1}>Sobre</Text>
         </View>
-        <View style={{marginTop:5, marginHorizontal:20, alignItems:'center', justifyContent:'center'}}>
-        <Text style={styles.text2}>Bacharel em direito e atualmente graduando em Sistemas de Informação pela Universidade de Ensino Dom Bosco.
+        <View style={{marginTop:10, marginHorizontal:10, alignItems:'center', justifyContent:'center'}}>
+        <Text style={styles.text2}>Tenho 29 anos, atualmente graduando em Sistemas de Informação pela Universidade de Ensino Dom Bosco.
           Atualmente trabalho como desenvolvedor Front-End e Sistema TOTVS na empresa TV Mirante com foco principal para dispositivos mobiles e web.
         </Text>
         </View>
